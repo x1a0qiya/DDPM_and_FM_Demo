@@ -10,9 +10,14 @@ project
 │  ├─ data
 │  │  └─ cat
 │  └─ model
-│     └─ UNet
-│        ├─ __pycache__
-│        │  └─ model.cpython-312.pyc
+│     ├─ UNet
+│     │  ├─ __pycache__
+│     │  │  └─ model.cpython-312.pyc
+│     │  ├─ checkpoints
+│     │  ├─ gen.py
+│     │  ├─ model.py
+│     │  └─ train.py
+│     └─ DiT
 │        ├─ checkpoints
 │        ├─ gen.py
 │        ├─ model.py
