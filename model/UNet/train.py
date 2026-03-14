@@ -12,7 +12,7 @@ print(f"Using device: {device}")
 """
 Training parameters
 """
-epochs = 40
+epochs = 100
 batch_size = 32
 image_size = 128
 
@@ -43,14 +43,14 @@ optimizer = torch.optim.AdamW(unet.parameters(), lr = 1e-4, weight_decay = 1e-4)
 """
 EMA
 """
-ema_avg = get_ema_multi_avg_fn(0.9999)
+ema_avg = get_ema_multi_avg_fn(0.999)
 ema_unet = AveragedModel(unet, multi_avg_fn=ema_avg)
 
 """
 Training
 """
 save_interval = 10
-resume_path = f"checkpoints/checkpoint_epoch_40.pth"  # Resume from here.
+resume_path = f"checkpoints/checkpoint_epoch_[].pth"  # Resume from here.
 
 if os.path.exists(resume_path):
     print(f"Loading checkpoint from {resume_path}...")

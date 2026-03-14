@@ -14,8 +14,19 @@ unet_data = torch.load(save_path, map_location=device, weights_only=True)
 if isinstance(unet_data, dict) and 'ema_model_state_dict' in unet_data:
     print("Found EMA weights, preparing to load...")
     ema_state_dict = unet_data['ema_model_state_dict']
+    
+    clean_state_dict = {}
+    for k, v in ema_state_dict.items():
+        if k == 'n_averaged':
+            continue
+            
+        if k.startswith('module.'):
+            new_key = k[7:]
+        else:
+            new_key = k
+        clean_state_dict[new_key] = v
         
-    loaded_model.load_state_dict(ema_state_dict)
+    loaded_model.load_state_dict(clean_state_dict)
     print("Successfully loaded the EMA U-Net model!")
 
 else:
